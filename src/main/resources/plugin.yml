@@ -1,0 +1,7 @@
+name: SurviKit
+version: '1.0'
+main: me.aliorpse.surviKit.SurviKit
+api-version: '1.21'
+prefix: SurviKit
+authors: [ Aliorpse ]
+description: Useful tool for minecraft survival servers

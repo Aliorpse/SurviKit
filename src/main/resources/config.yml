@@ -1,0 +1,5 @@
+features:
+  PunctuationsAutoEnglishify:
+    enabled: true
+  ShowPlayerCommands:
+    enabled: true
