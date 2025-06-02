@@ -5,3 +5,10 @@ api-version: '1.21'
 prefix: SurviKit
 authors: [ Aliorpse ]
 description: Useful toolkit for Minecraft survival servers
+commands:
+  sk:
+    description: "插件主命令"
+
+permissions:
+  sk.reload:
+    default: "op"

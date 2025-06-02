@@ -1,4 +1,4 @@
-package me.aliorpse.surviKit.listeners
+package me.aliorpse.surviKit.listeners.chat
 
 import io.papermc.paper.event.player.AsyncChatEvent
 import me.aliorpse.surviKit.utils.TextColor

@@ -1,7 +1,7 @@
-package me.aliorpse.surviKit.listeners
+package me.aliorpse.surviKit.listeners.chat
 
-import me.aliorpse.surviKit.utils.TextColor
 import io.papermc.paper.event.player.AsyncChatEvent
+import me.aliorpse.surviKit.utils.TextColor
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer
 import org.bukkit.Bukkit
 import org.bukkit.GameMode
@@ -14,13 +14,15 @@ import org.bukkit.plugin.Plugin
 import java.util.UUID
 
 class ExclCommands(private val key: NamespacedKey, private val plugin: Plugin) : Listener {
+    // Location 无法序列化, 故手动文本化
     private fun Location.parseString() = "${world?.name},$x,$y,$z,$yaw,$pitch"
 
     private fun String.parseLocation(): Location? {
         val parts = split(",").takeIf { it.size == 6 } ?: return null
         return try {
             val world = Bukkit.getWorld(parts[0]) ?: return null
-            Location(world,
+            Location(
+                world,
                 parts[1].toDouble(),
                 parts[2].toDouble(),
                 parts[3].toDouble(),
@@ -45,7 +47,9 @@ class ExclCommands(private val key: NamespacedKey, private val plugin: Plugin) :
 
         val currentTime = System.currentTimeMillis()
         if (cooldowns.getOrDefault(pl.uniqueId, 0L) > currentTime) {
-            return pl.sendMessage(TextColor.parse("&2SK &7> &c请稍后再使用此命令"))
+            return pl.sendMessage(
+                TextColor.parse("&2SK &7> &c请稍后再使用此命令")
+            )
         }
         cooldowns[pl.uniqueId] = currentTime + cooldownTime
 
@@ -62,7 +66,8 @@ class ExclCommands(private val key: NamespacedKey, private val plugin: Plugin) :
                 // 命令应当在在生存/旁观者模式下使用
                 if (pl.gameMode != GameMode.SURVIVAL && pl.gameMode != GameMode.SPECTATOR)
                     return pl.sendMessage(
-                        TextColor.parse("&2SK &7> &f这个指令应在生存/旁观者模式下使用."))
+                        TextColor.parse("&2SK &7> &f这个指令应在生存/旁观者模式下使用.")
+                    )
 
                 val pdc = pl.persistentDataContainer
                 val location = pdc.get(key, PersistentDataType.STRING)?.parseLocation()
@@ -71,7 +76,8 @@ class ExclCommands(private val key: NamespacedKey, private val plugin: Plugin) :
                     location == null -> {
                         if (pl.gameMode == GameMode.SPECTATOR) {
                             return pl.sendMessage(
-                                TextColor.parse("&2SK &7> &f你当前未处于 Freelook 状态. 请在生存模式下使用本功能."))
+                                TextColor.parse("&2SK &7> &f你当前未处于 Freelook 状态. 请在生存模式下使用本功能.")
+                            )
                         }
                         Bukkit.getScheduler().runTask(plugin, Runnable {
                             pdc.set(key, PersistentDataType.STRING, pl.location.parseString())
@@ -79,7 +85,8 @@ class ExclCommands(private val key: NamespacedKey, private val plugin: Plugin) :
                             pl.gameMode = GameMode.SPECTATOR
                             pl.playerListName(TextColor.parse("&b&lFL &o&f" + pl.name))
                             pl.sendMessage(
-                                TextColor.parse("&2SK &7> &fFreelook 已激活. 再次使用 !s 以退出"))
+                                TextColor.parse("&2SK &7> &fFreelook 已激活. 再次使用 !s 以退出")
+                            )
                         })
                     }
                     else -> {
@@ -91,17 +98,20 @@ class ExclCommands(private val key: NamespacedKey, private val plugin: Plugin) :
                                 pl.gameMode = GameMode.SURVIVAL
                                 pl.playerListName(TextColor.parse(pl.name))
                                 pl.sendMessage(
-                                    TextColor.parse("&2SK &7> &fFreelook 已退出"))
+                                    TextColor.parse("&2SK &7> &fFreelook 已退出")
+                                )
                             } catch (e: Exception) {
                                 pl.sendMessage(
-                                    TextColor.parse("&2SK &7> &cFreelook 退出失败: ${e.message}"))
+                                    TextColor.parse("&2SK &7> &cFreelook 退出失败: ${e.message}")
+                                )
                             }
                         })
                     }
                 }
             }
             else -> pl.sendMessage(
-                TextColor.parse("&2SK &7> &f未知命令."))
+                TextColor.parse("&2SK &7> &f未知命令.")
+            )
         }
     }
 }
