@@ -4,4 +4,4 @@ main: me.aliorpse.surviKit.SurviKit
 api-version: '1.21'
 prefix: SurviKit
 authors: [ Aliorpse ]
-description: Useful tool for minecraft survival servers
+description: Useful toolkit for Minecraft survival servers
