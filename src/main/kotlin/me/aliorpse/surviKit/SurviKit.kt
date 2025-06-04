@@ -13,9 +13,9 @@ class SurviKit : JavaPlugin() {
 
         // Events
         server.pluginManager.registerEvents(ExclCommands(
-                NamespacedKey(this, "freelook_location"),
-                this
-            ), this)
+            NamespacedKey(this, "freelook_location"),
+            this
+        ), this)
         if(config.getBoolean("features.ShowPlayerCommands.enabled", true))
             server.pluginManager.registerEvents(ShowPlayerCommands(), this)
         if(config.getBoolean("features.PunctuationsAutoEnglishify.enabled", true))
