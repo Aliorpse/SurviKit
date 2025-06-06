@@ -6,25 +6,46 @@ on:
   pull_request:
     branches: [ main ]
 
+# 如果仓库对 Actions 权限有限制，需要显式开通写入 artifacts 的权限
+permissions:
+  contents: read        # 默认
+  actions: write        # 用于上传 artifacts
+
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-    - name: Set up JDK 21
-      uses: actions/setup-java@v3
-      with:
-        distribution: 'temurin'
-        java-version: '21'
-        cache: gradle
+      - name: Grant execute permission for Gradle wrapper
+        run: chmod +x gradlew
 
-    - name: Build with Gradle
-      run: ./gradlew build
+      - name: Set up JDK 21
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+          cache: gradle
 
-    - name: Upload build artifacts
-      uses: actions/upload-artifact@v3
-      with:
-        name: SurviKit.jar
-        path: build/libs/*.jar 
+      - name: Build with Gradle
+        run: ./gradlew build --no-daemon
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: SurviKit
+          path: build/libs/*.jar
+
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: SurviKit
+
+      - name: Inspect artifact
+        run: ls -R .
