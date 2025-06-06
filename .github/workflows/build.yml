@@ -6,7 +6,6 @@ on:
   pull_request:
     branches: [ main ]
 
-# 如果仓库对 Actions 权限有限制，需要显式开通写入 artifacts 的权限
 permissions:
   contents: read        # 默认
   actions: write        # 用于上传 artifacts
