@@ -1,4 +1,4 @@
-name: Build
+name: 给不会构建的笨蛋用的 workflow (不是)
 
 on:
   push:

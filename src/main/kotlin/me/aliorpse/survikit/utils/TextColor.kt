@@ -1,4 +1,4 @@
-package me.aliorpse.surviKit.utils
+package me.aliorpse.survikit.utils
 
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer

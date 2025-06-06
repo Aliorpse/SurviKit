@@ -1,14 +1,14 @@
-package me.aliorpse.surviKit.listeners.chat
+package me.aliorpse.survikit.apps.chat.formatter
 
 import io.papermc.paper.event.player.AsyncChatEvent
-import me.aliorpse.surviKit.utils.TextColor
+import me.aliorpse.survikit.utils.TextColor
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import java.util.TreeMap
 
-class PunctuationsAutoEnglishify : Listener {
+class ChatListener : Listener {
 
     private val chineseToEnglishPunctuation = TreeMap<Char, Char>().apply {
         // 常用标点

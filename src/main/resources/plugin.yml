@@ -1,6 +1,6 @@
 name: SurviKit
 version: '1.0'
-main: me.aliorpse.surviKit.SurviKit
+main: me.aliorpse.survikit.SurviKit
 api-version: '1.21'
 prefix: SurviKit
 authors: [ Aliorpse ]
