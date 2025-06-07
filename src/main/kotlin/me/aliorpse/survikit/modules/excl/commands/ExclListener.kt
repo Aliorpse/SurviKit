@@ -1,7 +1,6 @@
 package me.aliorpse.survikit.modules.excl.commands
 
 import io.papermc.paper.event.player.AsyncChatEvent
-import me.aliorpse.survikit.utils.TextColor
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer
 import org.bukkit.Bukkit
 import org.bukkit.NamespacedKey
