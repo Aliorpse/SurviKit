@@ -1,4 +1,4 @@
-package me.aliorpse.survikit.apps.show.player.command
+package me.aliorpse.survikit.modules.show.player.command
 
 import me.aliorpse.survikit.utils.TextColor
 import org.bukkit.Bukkit
@@ -10,7 +10,7 @@ class CommandsListener() : Listener {
     @EventHandler
     fun showPlayerCommands(e: PlayerCommandPreprocessEvent) {
         Bukkit.broadcast(
-            TextColor.parse("&bCMD" + " &8> &7" + e.player.name + ": " + e.message)
+            TextColor.parse("&b&l>_ " + "&7&o" + e.player.name + ": " + e.message)
         )
     }
 }

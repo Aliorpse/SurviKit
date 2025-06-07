@@ -1,5 +1,11 @@
-features:
-  chat-formatter:
+modules:
+  exclcmds:
+    freelook:
+      enabled: true
+    change-block-state:
+      enabled-blocks: ["RAIL", "POWERED_RAIL", "DETECTOR_RAIL", "ACTIVATOR_RAIL"]
+  show-player-command:
     enabled: true
-  show-player-commands:
+    ignores: ["tell", "msg", "register", "login", "me"]
+  override-xaero-waypoint-share:
     enabled: true

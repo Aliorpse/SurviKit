@@ -1,4 +1,4 @@
-package me.aliorpse.survikit.apps.main.command
+package me.aliorpse.survikit.modules.main.command
 
 import me.aliorpse.survikit.utils.TextColor
 import org.bukkit.Bukkit
@@ -17,20 +17,20 @@ class MainCommand : CommandExecutor, TabCompleter {
         if (args.isEmpty()) {
             val pl = Bukkit.getServer().pluginManager.getPlugin("SurviKit")
             sender.sendMessage(
-                TextColor.parse("&2SK &8> &fRunning SurviKit ${pl!!.pluginMeta.version}")
+                TextColor.parse("&aSK &8> &fRunning SurviKit ${pl!!.pluginMeta.version}")
             )
             return true
         }
         when (args[0]) {
             "reload" -> {
                 sender.sendMessage(
-                    TextColor.parse("&2SK &8> &f尚未实现.")
+                    TextColor.parse("&aSK &8> &f尚未实现.")
                 )
                 return true
             }
             else -> {
                 sender.sendMessage(
-                    TextColor.parse("&2SK &8> &f未知指令.")
+                    TextColor.parse("&aSK &8> &f未知指令.")
                 )
                 return false
             }
