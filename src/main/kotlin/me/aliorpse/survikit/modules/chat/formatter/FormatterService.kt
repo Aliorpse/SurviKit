@@ -14,7 +14,7 @@ import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer
 import org.bukkit.Bukkit
 import org.bukkit.Sound
 
-class FormatterServices {
+class FormatterService {
     private val config = SurviKit.instance.config
     private val ipAddressRegex = """(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)|(?:[0-9a-fA-F]{1,4}:){7}[0-9a-fA-F]{1,4}|(?:([0-9a-fA-F]{1,4}:){0,6}[0-9a-fA-F]{1,4})?::(?:([0-9a-fA-F]{1,4}:){0,6}[0-9a-fA-F]{1,4})?""".toPattern()
 

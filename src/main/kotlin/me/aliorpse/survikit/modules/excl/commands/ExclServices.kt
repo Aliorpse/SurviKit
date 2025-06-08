@@ -21,7 +21,7 @@ class ExclServices {
     fun showHelp(pl: Player) {
         val cmdArgs = hashMapOf(
             "!" to "显示本菜单",
-            "!s" to "切换 Freelook 模式",
+            "!s" to "切换 Freelook (灵魂出窍)",
             "!loc" to "分享当前位置",
             "!bs [key] [value]" to "修改当前看向方块的状态"
         )

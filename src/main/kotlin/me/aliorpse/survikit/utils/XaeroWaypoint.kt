@@ -4,12 +4,12 @@ data class XaeroWaypoint(
     val prefix: String,      // "xaero-waypoint" (固定前缀)
     val name: String,        // 航点名称
     val marker: String,      // 标记符号（单个字符）
-    val x: Int,             // X坐标
-    val y: Int,             // Y坐标
-    val z: Int,             // Z坐标
+    val x: Int,              // X坐标
+    val y: Int,              // Y坐标
+    val z: Int,              // Z坐标
     val color: Int,          // 颜色值 (0-15 或 -1)
-    val useYaw: Boolean,    // 是否使用偏航角
-    val yaw: Int,           // 偏航角度数
+    val useYaw: Boolean,     // 是否使用偏航角
+    val yaw: Int,            // 偏航角度数
     val dimension: String    // 维度名称
 ) {
     companion object {

@@ -8,7 +8,7 @@ import kotlin.text.startsWith
 
 class FormatterListener : Listener {
 
-    private val services = FormatterServices()
+    private val services = FormatterService()
 
     @EventHandler
     fun onAsyncChat(e: AsyncChatEvent) {
