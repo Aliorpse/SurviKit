@@ -6,6 +6,8 @@
 ![Platform](https://img.shields.io/badge/Upstream-Paper-blue?style=for-the-badge)
 ![License](https://img.shields.io/badge/license-MIT-green?style=for-the-badge)
 
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/5a52fec5d61a4732b053b8bf89ce7adc)](https://app.codacy.com/gh/Aliorpse/SurviKit/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
+
 *轻量化高版本生存服基础插件*
 
 [下载](#-下载) • [功能](#-功能) • [使用](#-快速开始)
