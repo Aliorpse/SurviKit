@@ -13,8 +13,11 @@ class ExclListener(
     private val key: NamespacedKey,
     private val plugin: Plugin,
 ) : Listener {
+    companion object {
+        const val COOLDOWN_TIME_MS = 1000L
+    }
+
     private val cooldowns = mutableMapOf<UUID, Long>()
-    private val cooldownTime = 1000L
     private val services = ExclServices()
 
     @EventHandler
@@ -29,7 +32,7 @@ class ExclListener(
         if (cooldowns.getOrDefault(pl.uniqueId, 0L) > currentTime) {
             return pl.sendMessage("§aSK §8> §c请稍后再使用此命令.")
         }
-        cooldowns[pl.uniqueId] = currentTime + cooldownTime
+        cooldowns[pl.uniqueId] = currentTime + COOLDOWN_TIME_MS
 
         // 处理指令
         val args = msg.substring(1).split(" ")

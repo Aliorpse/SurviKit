@@ -13,8 +13,12 @@ class CommandsListener : Listener {
 
     @EventHandler
     fun onCommand(e: PlayerCommandPreprocessEvent) {
-        if (!config.getBoolean("modules.show-player-command.enabled")) return
-        if (e.message == "/") return
+        if (
+            !config.getBoolean("modules.show-player-command.enabled") ||
+            e.message == "/"
+        ) {
+            return
+        }
 
         val filtered = config.getList("modules.show-player-command.ignores")!!
         val rootCommand = e.message.substring(1)

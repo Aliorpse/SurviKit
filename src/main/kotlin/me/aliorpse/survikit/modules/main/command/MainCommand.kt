@@ -26,15 +26,14 @@ class MainCommand : CommandExecutor, TabCompleter {
                 sender.sendMessage(
                     TextColor.parse("&aSK &8> &f尚未实现.")
                 )
-                return true
             }
             else -> {
                 sender.sendMessage(
                     TextColor.parse("&aSK &8> &f未知指令.")
                 )
-                return false
             }
         }
+        return true
     }
 
     override fun onTabComplete(
