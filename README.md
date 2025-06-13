@@ -14,6 +14,8 @@
 
 ---
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/08ea261948604b72aba98aa4fe81f642)](https://app.codacy.com/gh/Aliorpse/SurviKit?utm_source=github.com&utm_medium=referral&utm_content=Aliorpse/SurviKit&utm_campaign=Badge_Grade)
+
 ##  功能
 这里包含了插件的一些功能, 有点杂, 它们有可能过时, 以插件为准。
 
