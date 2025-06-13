@@ -48,6 +48,6 @@ class SurviKit : JavaPlugin() {
     }
 
     override fun onDisable() {
-        // Plugin shutdown logic
+        // 喵喵喵
     }
 }
