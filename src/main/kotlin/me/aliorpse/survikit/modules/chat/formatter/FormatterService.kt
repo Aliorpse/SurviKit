@@ -24,7 +24,7 @@ class FormatterService {
         val waypoint = XaeroWaypoint.parse(PlainTextComponentSerializer.plainText().serialize(e.message()))
         if (waypoint == null) return
 
-        val dimension = when(waypoint.dimension) {
+        val dimension = when (waypoint.dimension) {
             "overworld" -> "&2主世界"
             "the-nether" -> "&c下界"
             "the-end" -> "&d末地"
@@ -32,7 +32,7 @@ class FormatterService {
         }
 
         val message = Component.text()
-            .append(TextColor.parse("&e# &7${e.player.name} 分享路径点 &f${waypoint.name} &7- &f${dimension} "))
+            .append(TextColor.parse("&e# &7${e.player.name} 分享路径点 &f${waypoint.name} &7- &f$dimension "))
             .append(
                 Component.text("(${waypoint.x}, ${waypoint.y}, ${waypoint.z})")
                     .color(NamedTextColor.YELLOW)
@@ -77,10 +77,11 @@ class FormatterService {
 
         message = message.replaceText(ipReplacement)
 
-        Bukkit.broadcast(Component.text()
-            .append(Component.text("<${e.player.name}> "))
-            .append(message)
-            .build()
+        Bukkit.broadcast(
+            Component.text()
+                .append(Component.text("<${e.player.name}> "))
+                .append(message)
+                .build()
         )
     }
 }

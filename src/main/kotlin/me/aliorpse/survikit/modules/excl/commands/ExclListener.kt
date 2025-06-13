@@ -40,7 +40,7 @@ class ExclListener(
             "" ->
                 services.showHelp(pl)
             "s" ->
-                services.freeLook(pl, key ,plugin)
+                services.freeLook(pl, key, plugin)
             "loc" ->
                 services.showLocation(pl)
             "bs" ->

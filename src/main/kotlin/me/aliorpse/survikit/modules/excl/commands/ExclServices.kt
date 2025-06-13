@@ -34,14 +34,16 @@ class ExclServices {
     }
 
     fun freeLook(pl: Player, key: NamespacedKey, plugin: Plugin) {
-        if(!(config.getBoolean("modules.exclcmds.freelook.enabled")))
+        if (!(config.getBoolean("modules.exclcmds.freelook.enabled"))) {
             return pl.sendMessage("§aSK §8> §f该功能未启用.")
+        }
 
         // 命令应当在在生存/旁观者模式下使用
-        if (pl.gameMode != GameMode.SURVIVAL && pl.gameMode != GameMode.SPECTATOR)
+        if (pl.gameMode != GameMode.SURVIVAL && pl.gameMode != GameMode.SPECTATOR) {
             return pl.sendMessage(
                 TextColor.parse("&aSK &8> &f这个指令应在生存/旁观者模式下使用.")
             )
+        }
 
         val pdc = pl.persistentDataContainer
         val location = pdc.get(key, PersistentDataType.STRING)?.parseLocation()
@@ -53,33 +55,39 @@ class ExclServices {
                         TextColor.parse("&aSK &8> &f你当前未处于 Freelook 状态. 请在生存模式下使用本功能.")
                     )
                 }
-                Bukkit.getScheduler().runTask(plugin, Runnable {
-                    pdc.set(key, PersistentDataType.STRING, pl.location.parseString())
+                Bukkit.getScheduler().runTask(
+                    plugin,
+                    Runnable {
+                        pdc.set(key, PersistentDataType.STRING, pl.location.parseString())
 
-                    pl.gameMode = GameMode.SPECTATOR
-                    pl.playerListName(TextColor.parse("&b&lFL&r " + pl.name))
-                    pl.sendMessage(
-                        TextColor.parse("&aSK &8> &fFreelook 已激活. 再次使用 !s 以退出")
-                    )
-                })
-            }
-            else -> {
-                Bukkit.getScheduler().runTask(plugin, Runnable {
-                    try {
-                        pdc.remove(key)
-
-                        pl.teleport(location)
-                        pl.gameMode = GameMode.SURVIVAL
-                        pl.playerListName(TextColor.parse(pl.name))
+                        pl.gameMode = GameMode.SPECTATOR
+                        pl.playerListName(TextColor.parse("&b&lFL&r " + pl.name))
                         pl.sendMessage(
-                            TextColor.parse("&aSK &8> &fFreelook 已退出")
-                        )
-                    } catch (e: Exception) {
-                        pl.sendMessage(
-                            TextColor.parse("&aSK &8> &cFreelook 退出失败: ${e.message}")
+                            TextColor.parse("&aSK &8> &fFreelook 已激活. 再次使用 !s 以退出")
                         )
                     }
-                })
+                )
+            }
+            else -> {
+                Bukkit.getScheduler().runTask(
+                    plugin,
+                    Runnable {
+                        try {
+                            pdc.remove(key)
+
+                            pl.teleport(location)
+                            pl.gameMode = GameMode.SURVIVAL
+                            pl.playerListName(TextColor.parse(pl.name))
+                            pl.sendMessage(
+                                TextColor.parse("&aSK &8> &fFreelook 已退出")
+                            )
+                        } catch (e: Exception) {
+                            pl.sendMessage(
+                                TextColor.parse("&aSK &8> &cFreelook 退出失败: ${e.message}")
+                            )
+                        }
+                    }
+                )
             }
         }
     }
@@ -88,7 +96,7 @@ class ExclServices {
         val df = DecimalFormat("#.#")
         fun Double.toFixed(): String = df.format(this)
 
-        val dimension = when(pl.world.name) {
+        val dimension = when (pl.world.name) {
             "world" -> "&2主世界"
             "the_nether" -> "&c下界"
             "the_end" -> "&d末地"
@@ -110,7 +118,6 @@ class ExclServices {
     }
 
     fun blockState(pl: Player, args: List<String>, plugin: Plugin) {
-
         // 目标方块
         val block = pl.getTargetBlockExact(4) ?: run {
             pl.sendMessage("§aSK §8> §f你当前没有看向任何方块. (最大检测距离4)")
@@ -119,15 +126,15 @@ class ExclServices {
 
         // 允许方块
         val allowedBlocks = config.getList("modules.exclcmds.change-block-state.enabled-blocks")!!
-        if (block.type.name !in allowedBlocks && !pl.isOp)
+        if (block.type.name !in allowedBlocks && !pl.isOp) {
             return pl.sendMessage("§aSK §8> §f该方块不允许修改状态.")
-
+        }
 
         // 解析参数
-        val property = args.getOrNull(0)?.replaceFirstChar { it.uppercaseChar() } ?:
-            return pl.sendMessage("§aSK §8> §c缺少属性名")
-        val rawValue = args.getOrNull(1) ?:
-            return pl.sendMessage("§aSK §8> §c缺少属性值")
+        val property = args.getOrNull(0)?.replaceFirstChar { it.uppercaseChar() }
+            ?: return pl.sendMessage("§aSK §8> §c缺少属性名")
+        val rawValue = args.getOrNull(1)
+            ?: return pl.sendMessage("§aSK §8> §c缺少属性值")
 
         val data = block.blockData
 
@@ -162,18 +169,21 @@ class ExclServices {
             }
 
             // 主线程更新
-            Bukkit.getScheduler().runTask(plugin, Runnable {
-                try {
-                    val newData = data.clone()
-                    method.invoke(newData, value)
+            Bukkit.getScheduler().runTask(
+                plugin,
+                Runnable {
+                    try {
+                        val newData = data.clone()
+                        method.invoke(newData, value)
 
-                    block.blockData = newData
-                    pl.sendMessage("§aSK §8> §f方块属性已更改: $property = $rawValue")
-                } catch (e: Exception) {
-                    pl.sendMessage("§aSK §8> §c修改失败: ${e.message}")
-                    e.printStackTrace()
+                        block.blockData = newData
+                        pl.sendMessage("§aSK §8> §f方块属性已更改: $property = $rawValue")
+                    } catch (e: Exception) {
+                        pl.sendMessage("§aSK §8> §c修改失败: ${e.message}")
+                        e.printStackTrace()
+                    }
                 }
-            })
+            )
         } catch (e: Exception) {
             pl.sendMessage("§aSK §8> §c错误: ${e.message}")
         }

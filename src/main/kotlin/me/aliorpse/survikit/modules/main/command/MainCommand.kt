@@ -43,11 +43,9 @@ class MainCommand : CommandExecutor, TabCompleter {
         label: String,
         args: Array<out String>
     ): List<String> {
-
         return when {
             args.size == 1 -> listOf("reload", "ciallo")
             else -> emptyList()
         }
     }
-
 }

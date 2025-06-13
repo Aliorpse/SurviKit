@@ -1,9 +1,9 @@
 package me.aliorpse.survikit
 
-import me.aliorpse.survikit.modules.main.command.MainCommand
-import me.aliorpse.survikit.modules.show.player.command.CommandsListener
 import me.aliorpse.survikit.modules.chat.formatter.FormatterListener
 import me.aliorpse.survikit.modules.excl.commands.ExclListener
+import me.aliorpse.survikit.modules.main.command.MainCommand
+import me.aliorpse.survikit.modules.show.player.command.CommandsListener
 import me.aliorpse.survikit.modules.warps.WarpsCommand
 import me.aliorpse.survikit.utils.WarpManager
 import org.bukkit.NamespacedKey
@@ -34,10 +34,12 @@ class SurviKit : JavaPlugin() {
         }
 
         // ExclCommands
-        server.pluginManager.registerEvents(ExclListener(
+        server.pluginManager.registerEvents(
+            ExclListener(
                 NamespacedKey(this, "freelook_location"),
                 this
-            ), this
+            ),
+            this
         )
 
         // ShowPlayerCommands

@@ -19,7 +19,7 @@ class FormatterListener : Listener {
         when {
             msg.startsWith("!") ->
                 return
-            msg.startsWith("xaero-waypoint:")  ->
+            msg.startsWith("xaero-waypoint:") ->
                 services.parseXaeroWaypoint(e)
             else ->
                 services.universalChatFormatter(e)

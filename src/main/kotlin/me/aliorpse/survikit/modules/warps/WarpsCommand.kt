@@ -2,15 +2,16 @@ package me.aliorpse.survikit.modules.warps
 
 import me.aliorpse.survikit.utils.TextColor
 import me.aliorpse.survikit.utils.WarpManager
+import net.kyori.adventure.text.Component
+import net.kyori.adventure.text.event.ClickEvent
+import net.kyori.adventure.text.event.HoverEvent
+import net.kyori.adventure.text.format.NamedTextColor
 import org.bukkit.command.Command
 import org.bukkit.command.CommandExecutor
 import org.bukkit.command.CommandSender
 import org.bukkit.command.TabCompleter
 import org.bukkit.entity.Player
-import net.kyori.adventure.text.Component
-import net.kyori.adventure.text.event.ClickEvent
-import net.kyori.adventure.text.event.HoverEvent
-import net.kyori.adventure.text.format.NamedTextColor
+import java.util.Locale
 
 class WarpsCommand : CommandExecutor, TabCompleter {
 
@@ -41,9 +42,10 @@ class WarpsCommand : CommandExecutor, TabCompleter {
                     sender.sendMessage(TextColor.parse("&aSK &8> &fWarp 列表:"))
                     warps.forEach { name ->
                         val component = Component.text("  - ", NamedTextColor.GRAY)
-                            .append(Component.text(name, NamedTextColor.WHITE)
-                                .hoverEvent(HoverEvent.showText(Component.text("点击查看坐标")))
-                                .clickEvent(ClickEvent.runCommand("/$label get $name"))
+                            .append(
+                                Component.text(name, NamedTextColor.WHITE)
+                                    .hoverEvent(HoverEvent.showText(Component.text("点击查看坐标")))
+                                    .clickEvent(ClickEvent.runCommand("/$label get $name"))
                             )
                         sender.sendMessage(component)
                     }
@@ -76,16 +78,17 @@ class WarpsCommand : CommandExecutor, TabCompleter {
                 if (loc == null) {
                     sender.sendMessage(TextColor.parse("&aSK &8> &c不存在名为 &f$name &c的 Warp"))
                 } else {
-                    val x = String.format("%.1f", loc.x)
-                    val y = String.format("%.1f", loc.y)
-                    val z = String.format("%.1f", loc.z)
+                    val x = String.format(Locale.ROOT, "%.1f", loc.x)
+                    val y = String.format(Locale.ROOT, "%.1f", loc.y)
+                    val z = String.format(Locale.ROOT, "%.1f", loc.z)
                     val msg = Component.text()
                         .append(TextColor.parse("&aSK &8> &fWarp &a$name &f的信息:\n"))
                         .append(TextColor.parse("  世界: ${loc.world?.name} \n"))
                         .append(TextColor.parse("  坐标: "))
-                        .append(TextColor.parse("&e$x, $y, $z")
-                            .hoverEvent(HoverEvent.showText(Component.text("点击复制坐标")))
-                            .clickEvent(ClickEvent.copyToClipboard("$x $y $z"))
+                        .append(
+                            TextColor.parse("&e$x, $y, $z")
+                                .hoverEvent(HoverEvent.showText(Component.text("点击复制坐标")))
+                                .clickEvent(ClickEvent.copyToClipboard("$x $y $z"))
                         )
                     sender.sendMessage(msg)
                 }

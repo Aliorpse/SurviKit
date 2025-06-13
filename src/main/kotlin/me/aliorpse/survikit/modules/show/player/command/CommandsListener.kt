@@ -7,14 +7,14 @@ import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.player.PlayerCommandPreprocessEvent
 
-class CommandsListener() : Listener {
+class CommandsListener : Listener {
 
     private val config = SurviKit.instance.config
 
     @EventHandler
     fun onCommand(e: PlayerCommandPreprocessEvent) {
-        if(!config.getBoolean("modules.show-player-command.enabled")) return
-        if(e.message == "/") return
+        if (!config.getBoolean("modules.show-player-command.enabled")) return
+        if (e.message == "/") return
 
         val filtered = config.getList("modules.show-player-command.ignores")!!
         val rootCommand = e.message.substring(1)
