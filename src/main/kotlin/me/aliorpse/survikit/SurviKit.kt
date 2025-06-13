@@ -10,7 +10,6 @@ import org.bukkit.NamespacedKey
 import org.bukkit.plugin.java.JavaPlugin
 
 class SurviKit : JavaPlugin() {
-
     companion object {
         lateinit var instance: SurviKit
             private set
