@@ -1,10 +1,11 @@
 package me.aliorpse.survikit
 
-import me.aliorpse.survikit.modules.chat.formatter.FormatterListener
-import me.aliorpse.survikit.modules.excl.commands.ExclListener
-import me.aliorpse.survikit.modules.main.command.MainCommand
-import me.aliorpse.survikit.modules.show.player.command.CommandsListener
-import me.aliorpse.survikit.modules.warps.WarpsCommand
+import me.aliorpse.survikit.modules.commands.BlockStateCommand
+import me.aliorpse.survikit.modules.commands.MainCommand
+import me.aliorpse.survikit.modules.commands.WarpsCommand
+import me.aliorpse.survikit.modules.listeners.CommandsListener
+import me.aliorpse.survikit.modules.listeners.ExclListener
+import me.aliorpse.survikit.modules.listeners.FormatterListener
 import me.aliorpse.survikit.utils.WarpManager
 import org.bukkit.NamespacedKey
 import org.bukkit.plugin.java.JavaPlugin
@@ -30,6 +31,12 @@ class SurviKit : JavaPlugin() {
         server.getPluginCommand("warp")?.apply {
             setExecutor(WarpsCommand())
             tabCompleter = WarpsCommand()
+        }
+
+        // BlockState
+        server.getPluginCommand("bs")?.apply {
+            setExecutor(BlockStateCommand())
+            tabCompleter = BlockStateCommand()
         }
 
         // ExclCommands

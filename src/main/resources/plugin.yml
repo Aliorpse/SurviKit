@@ -10,7 +10,8 @@ commands:
     description: "插件主命令"
   warp:
     description: "地标管理"
-    usage: /<command> <list|set|get>
+  bs:
+    description: "方块状态更改"
 
 permissions:
   sk.reload:

@@ -1,4 +1,4 @@
-package me.aliorpse.survikit.modules.main.command
+package me.aliorpse.survikit.modules.commands
 
 import me.aliorpse.survikit.utils.TextColor
 import org.bukkit.Bukkit

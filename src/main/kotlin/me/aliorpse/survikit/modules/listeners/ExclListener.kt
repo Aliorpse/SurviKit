@@ -1,6 +1,7 @@
-package me.aliorpse.survikit.modules.excl.commands
+package me.aliorpse.survikit.modules.listeners
 
 import io.papermc.paper.event.player.AsyncChatEvent
+import me.aliorpse.survikit.modules.services.ExclService
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer
 import org.bukkit.Bukkit
 import org.bukkit.NamespacedKey
@@ -18,7 +19,6 @@ class ExclListener(
     }
 
     private val cooldowns = mutableMapOf<UUID, Long>()
-    private val services = ExclServices()
 
     @EventHandler
     fun handleExclCommands(e: AsyncChatEvent) {
@@ -41,13 +41,11 @@ class ExclListener(
 
         when (cmd) {
             "" ->
-                services.showHelp(pl)
+                ExclService.showHelp(pl)
             "s" ->
-                services.freeLook(pl, key, plugin)
+                ExclService.freeLook(pl, key, plugin)
             "loc" ->
-                services.showLocation(pl)
-            "bs" ->
-                services.blockState(pl, cmdArgs, plugin)
+                ExclService.showLocation(pl)
             else -> pl.sendMessage("§aSK §8> §f未知命令.")
         }
         Bukkit.getServer().consoleSender.sendMessage("${pl.name} issued exclamation mark command: $msg")

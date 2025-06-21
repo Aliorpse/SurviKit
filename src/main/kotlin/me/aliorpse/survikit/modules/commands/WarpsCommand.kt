@@ -1,4 +1,4 @@
-package me.aliorpse.survikit.modules.warps
+package me.aliorpse.survikit.modules.commands
 
 import me.aliorpse.survikit.utils.TextColor
 import me.aliorpse.survikit.utils.WarpManager
@@ -78,9 +78,9 @@ class WarpsCommand : CommandExecutor, TabCompleter {
                 if (loc == null) {
                     sender.sendMessage(TextColor.parse("&aSK &8> &c不存在名为 &f$name &c的 Warp"))
                 } else {
-                    val x = String.format(Locale.ROOT, "%.1f", loc.x)
-                    val y = String.format(Locale.ROOT, "%.1f", loc.y)
-                    val z = String.format(Locale.ROOT, "%.1f", loc.z)
+                    val x = String.Companion.format(Locale.ROOT, "%.1f", loc.x)
+                    val y = String.Companion.format(Locale.ROOT, "%.1f", loc.y)
+                    val z = String.Companion.format(Locale.ROOT, "%.1f", loc.z)
                     val msg = Component.text()
                         .append(TextColor.parse("&aSK &8> &fWarp &a$name &f的信息:\n"))
                         .append(TextColor.parse("  世界: ${loc.world?.name} \n"))

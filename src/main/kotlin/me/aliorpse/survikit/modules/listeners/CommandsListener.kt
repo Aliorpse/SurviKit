@@ -1,4 +1,4 @@
-package me.aliorpse.survikit.modules.show.player.command
+package me.aliorpse.survikit.modules.listeners
 
 import me.aliorpse.survikit.SurviKit
 import me.aliorpse.survikit.utils.TextColor
@@ -9,7 +9,7 @@ import org.bukkit.event.player.PlayerCommandPreprocessEvent
 
 class CommandsListener : Listener {
 
-    private val config = SurviKit.instance.config
+    private val config = SurviKit.Companion.instance.config
 
     @EventHandler
     fun onCommand(e: PlayerCommandPreprocessEvent) {
