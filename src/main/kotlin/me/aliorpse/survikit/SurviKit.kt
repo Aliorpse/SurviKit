@@ -41,10 +41,7 @@ class SurviKit : JavaPlugin() {
 
         // ExclCommands
         server.pluginManager.registerEvents(
-            ExclListener(
-                NamespacedKey(this, "freelook_location"),
-                this
-            ),
+            ExclListener(NamespacedKey(this, "freelook_location")),
             this
         )
 

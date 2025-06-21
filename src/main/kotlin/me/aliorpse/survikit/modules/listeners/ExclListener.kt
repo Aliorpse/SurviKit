@@ -1,23 +1,23 @@
 package me.aliorpse.survikit.modules.listeners
 
 import io.papermc.paper.event.player.AsyncChatEvent
+import me.aliorpse.survikit.SurviKit
 import me.aliorpse.survikit.modules.services.ExclService
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer
 import org.bukkit.Bukkit
 import org.bukkit.NamespacedKey
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
-import org.bukkit.plugin.Plugin
 import java.util.UUID
 
 class ExclListener(
     private val key: NamespacedKey,
-    private val plugin: Plugin,
 ) : Listener {
     companion object {
         const val COOLDOWN_TIME_MS = 1000L
     }
 
+    private val plugin = SurviKit.instance
     private val cooldowns = mutableMapOf<UUID, Long>()
 
     @EventHandler
